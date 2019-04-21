@@ -1803,7 +1803,8 @@ static void ftpl_init(void)
       cache_enabled = 0;
     }
   }
-  if ((tmp_env = getenv("DONT_FAKE_MONOTONIC")) != NULL)
+  if ((tmp_env = getenv("FAKETIME_DONT_FAKE_MONOTONIC")) != NULL
+    || (tmp_env = getenv("DONT_FAKE_MONOTONIC")) != NULL)
   {
     if (0 == strcmp(tmp_env, "1"))
     {
