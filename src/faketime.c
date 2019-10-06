@@ -1,7 +1,7 @@
 /*
  *  libfaketime wrapper command
  *
- *  This file is part of libfaketime, version 0.9.7
+ *  This file is part of libfaketime, version 0.9.8
  *
  *  libfaketime is free software; you can redistribute it and/or modify it
  *  under the terms of the GNU General Public License v2 as published by the
@@ -225,6 +225,7 @@ int main (int argc, char **argv)
     if (SEM_FAILED == (sem = sem_open(sem_name, O_CREAT|O_EXCL, S_IWUSR|S_IRUSR, 1)))
     {
       perror("sem_open");
+      fprintf(stderr, "The faketime wrapper only works on platforms that support the sem_open()\nsystem call. However, you may LD_PRELOAD libfaketime without using this wrapper.\n");
       exit(EXIT_FAILURE);
     }
 

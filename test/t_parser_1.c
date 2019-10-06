@@ -20,7 +20,7 @@
  */
 
 #include <stdio.h>
-#include "libfaketime.c"
+#include "../src/libfaketime.c"
 #include <check.h>
 
 #define ONE_DAY (long)(24*60*60)
@@ -76,6 +76,7 @@ START_TEST(TEST_parse_ft_string_ADDITIONS)
   time_t foo;
   int x = 0;
   for (x = 0; x < 5; x++) {
+    bzero(&foo, sizeof(time_t));
     time(&foo);
     printf("Time is %ld\n",foo);
     sleep(1);
@@ -94,10 +95,6 @@ int main() {
   SRunner *sr = srunner_create(s1);
   int nf;
 
-  // go();
-  // parse_ft_string("+1d"); \
-  // printf("GO!\n");
-  // go();
   /* User-specified pre-run code */
   suite_add_tcase(s1, tc1_1);
   tcase_add_test(tc1_1, TEST_parse_ft_string_ADDITIONS);

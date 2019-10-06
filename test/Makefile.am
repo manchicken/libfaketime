@@ -6,8 +6,8 @@ check_PROGRAMS = timetest t_parser_1
 timetest_SOURCES = timetest.c
 
 t_parser_1_SOURCES = t_parser_1.c
-t_parser_1_CFLAGS = $(GTEST_CFLAGS)
-t_parser_1_LDADD = $(GTEST_LIBS)
+t_parser_1_CFLAGS = -I../src/
+# t_parser_1_LDADD = -lfaketime
 
 if SOLARIS
 	AM_CFLAGS += -D__EXTENSIONS__ -D_XOPEN_SOURCE=600
@@ -18,7 +18,7 @@ if !MACOS
 	timetest_LDADD = -ldl -lm -lrt -lpthread
 endif
 
-TESTS = $(check_PROGRAMS)
+TESTS = ./testframe.sh $(check_PROGRAMS)
 
-test-local : check
-	./testframe.sh
+# test-local : check
+# 	./testframe.sh
